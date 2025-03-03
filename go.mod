@@ -1,4 +1,4 @@
-module github.com/IBM/sarama
+module github.com/EvanJGunn/sarama
 
 go 1.21
 
