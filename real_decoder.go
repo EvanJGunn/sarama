@@ -2,6 +2,7 @@ package sarama
 
 import (
 	"encoding/binary"
+	"log"
 	"math"
 
 	"github.com/rcrowley/go-metrics"
@@ -116,6 +117,7 @@ func (rd *realDecoder) getArrayLength() (int, error) {
 		rd.off = len(rd.raw)
 		return -1, ErrInsufficientData
 	} else if tmp > 2*math.MaxUint16 {
+		log.Println("HERE1")
 		return -1, errInvalidArrayLength
 	}
 	return tmp, nil
@@ -319,6 +321,7 @@ func (rd *realDecoder) getInt32Array() ([]int32, error) {
 	}
 
 	if n < 0 {
+		log.Println("HERE2")
 		return nil, errInvalidArrayLength
 	}
 
@@ -348,6 +351,7 @@ func (rd *realDecoder) getInt64Array() ([]int64, error) {
 	}
 
 	if n < 0 {
+		log.Println("HERE3")
 		return nil, errInvalidArrayLength
 	}
 
@@ -372,6 +376,7 @@ func (rd *realDecoder) getStringArray() ([]string, error) {
 	}
 
 	if n < 0 {
+		log.Println("HERE4")
 		return nil, errInvalidArrayLength
 	}
 
