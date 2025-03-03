@@ -1,6 +1,7 @@
 package sarama
 
 import (
+	"log"
 	"time"
 )
 
@@ -53,6 +54,7 @@ func (a *AlterClientQuotasResponse) decode(pd packetDecoder, version int16) erro
 	// Entries
 	entryCount, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("ALTER CLIENT QUOTAS RESPONSE 2")
 		return err
 	}
 	if entryCount > 0 {
@@ -111,6 +113,7 @@ func (a *AlterClientQuotasEntryResponse) decode(pd packetDecoder, version int16)
 	// Entity
 	componentCount, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("ALTER CLIENT QUOTAS RESPONSE 1")
 		return err
 	}
 	if componentCount > 0 {

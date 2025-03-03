@@ -1,6 +1,9 @@
 package sarama
 
-import "time"
+import (
+	"log"
+	"time"
+)
 
 type DescribeLogDirsResponse struct {
 	ThrottleTime time.Duration
@@ -38,6 +41,7 @@ func (r *DescribeLogDirsResponse) decode(pd packetDecoder, version int16) error 
 	// Decode array of DescribeLogDirsResponseDirMetadata
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("DESCRIBE LOG DIRS RESPONSE 1")
 		return err
 	}
 
@@ -123,6 +127,7 @@ func (r *DescribeLogDirsResponseDirMetadata) decode(pd packetDecoder, version in
 	// Decode array of DescribeLogDirsResponseTopic
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("DESCRIBE LOG DIRS RESPONSE 2")
 		return err
 	}
 
@@ -172,6 +177,7 @@ func (r *DescribeLogDirsResponseTopic) decode(pd packetDecoder, version int16) e
 
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("DESCRIBE LOG DIRS RESPONSE 3")
 		return err
 	}
 	r.Partitions = make([]DescribeLogDirsResponsePartition, n)

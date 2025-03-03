@@ -1,6 +1,9 @@
 package sarama
 
-import "time"
+import (
+	"log"
+	"time"
+)
 
 // ApiVersionsResponseKey contains the APIs supported by the broker.
 type ApiVersionsResponseKey struct {
@@ -105,6 +108,7 @@ func (r *ApiVersionsResponse) decode(pd packetDecoder, version int16) (err error
 	} else {
 		numApiKeys, err = pd.getArrayLength()
 		if err != nil {
+			log.Println("API VERSIONS RESPONSE")
 			return err
 		}
 	}

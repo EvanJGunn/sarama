@@ -1,6 +1,9 @@
 package sarama
 
-import "time"
+import (
+	"log"
+	"time"
+)
 
 type MemberResponse struct {
 	MemberId        string
@@ -52,6 +55,7 @@ func (r *LeaveGroupResponse) decode(pd packetDecoder, version int16) (err error)
 	if r.Version >= 3 {
 		membersLen, err := pd.getArrayLength()
 		if err != nil {
+			log.Println("LEAVE GROUP RESPONSE")
 			return err
 		}
 		r.Members = make([]MemberResponse, membersLen)

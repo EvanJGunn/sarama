@@ -1,5 +1,7 @@
 package sarama
 
+import "log"
+
 type SyncGroupRequestAssignment struct {
 	// MemberId contains the ID of the member to assign.
 	MemberId string
@@ -96,6 +98,7 @@ func (s *SyncGroupRequest) decode(pd packetDecoder, version int16) (err error) {
 	}
 
 	if numAssignments, err := pd.getArrayLength(); err != nil {
+		log.Println("SYNC GROUP REQUEST")
 		return err
 	} else if numAssignments > 0 {
 		s.GroupAssignments = make([]SyncGroupRequestAssignment, numAssignments)

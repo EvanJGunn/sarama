@@ -1,6 +1,7 @@
 package sarama
 
 import (
+	"log"
 	"time"
 )
 
@@ -56,6 +57,7 @@ func (c *CreateTopicsRequest) encode(pe packetEncoder) error {
 func (c *CreateTopicsRequest) decode(pd packetDecoder, version int16) (err error) {
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("CREATE TOPICS REQUEST 2")
 		return err
 	}
 
@@ -176,6 +178,7 @@ func (t *TopicDetail) decode(pd packetDecoder, version int16) (err error) {
 
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("CREATE TOPICS REQUEST 3")
 		return err
 	}
 
@@ -194,6 +197,7 @@ func (t *TopicDetail) decode(pd packetDecoder, version int16) (err error) {
 
 	n, err = pd.getArrayLength()
 	if err != nil {
+		log.Println("CREATE TOPICS REQUEST 1")
 		return err
 	}
 

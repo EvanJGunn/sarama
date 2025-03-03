@@ -2,6 +2,7 @@ package sarama
 
 import (
 	"fmt"
+	"log"
 	"time"
 )
 
@@ -58,6 +59,7 @@ func (a *AlterConfigsResponse) decode(pd packetDecoder, version int16) error {
 
 	responseCount, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("ALTER CONFIGS RESPONSE")
 		return err
 	}
 

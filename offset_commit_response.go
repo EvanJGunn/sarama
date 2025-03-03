@@ -1,6 +1,9 @@
 package sarama
 
-import "time"
+import (
+	"log"
+	"time"
+)
 
 type OffsetCommitResponse struct {
 	Version        int16
@@ -54,6 +57,7 @@ func (r *OffsetCommitResponse) decode(pd packetDecoder, version int16) (err erro
 
 	numTopics, err := pd.getArrayLength()
 	if err != nil || numTopics == 0 {
+		log.Println("OFFSET COMMIT RESPONSE 1")
 		return err
 	}
 
@@ -66,6 +70,7 @@ func (r *OffsetCommitResponse) decode(pd packetDecoder, version int16) (err erro
 
 		numErrors, err := pd.getArrayLength()
 		if err != nil {
+			log.Println("OFFSET COMMIT RESPONSE 2")
 			return err
 		}
 

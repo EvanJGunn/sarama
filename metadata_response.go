@@ -1,6 +1,9 @@
 package sarama
 
-import "time"
+import (
+	"log"
+	"time"
+)
 
 // PartitionMetadata contains each partition in the topic.
 type PartitionMetadata struct {
@@ -189,6 +192,7 @@ func (t *TopicMetadata) decode(pd packetDecoder, version int16) (err error) {
 		n, err = pd.getCompactArrayLength()
 	}
 	if err != nil {
+		log.Println("METADATA RESPONSE 3")
 		return err
 	} else {
 		t.Partitions = make([]*PartitionMetadata, n)
@@ -298,6 +302,7 @@ func (r *MetadataResponse) decode(pd packetDecoder, version int16) (err error) {
 		brokerArrayLen, err = pd.getCompactArrayLength()
 	}
 	if err != nil {
+		log.Println("METADATA RESPONSE 1")
 		return err
 	}
 
@@ -334,6 +339,7 @@ func (r *MetadataResponse) decode(pd packetDecoder, version int16) (err error) {
 		topicArrayLen, err = pd.getCompactArrayLength()
 	}
 	if err != nil {
+		log.Println("METADATA RESPONSE 2")
 		return err
 	}
 

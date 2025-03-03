@@ -1,6 +1,9 @@
 package sarama
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
 type fetchRequestBlock struct {
 	Version int16
@@ -199,6 +202,7 @@ func (r *FetchRequest) decode(pd packetDecoder, version int16) (err error) {
 	}
 	topicCount, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("FETCH REQUEST 1")
 		return err
 	}
 	if topicCount == 0 {
@@ -212,6 +216,7 @@ func (r *FetchRequest) decode(pd packetDecoder, version int16) (err error) {
 		}
 		partitionCount, err := pd.getArrayLength()
 		if err != nil {
+			log.Println("FETCH REQUEST 2")
 			return err
 		}
 		r.blocks[topic] = make(map[int32]*fetchRequestBlock)
@@ -231,6 +236,7 @@ func (r *FetchRequest) decode(pd packetDecoder, version int16) (err error) {
 	if r.Version >= 7 {
 		forgottenCount, err := pd.getArrayLength()
 		if err != nil {
+			log.Println("FETCH REQUEST 3")
 			return err
 		}
 		r.forgotten = make(map[string][]int32)
@@ -241,6 +247,7 @@ func (r *FetchRequest) decode(pd packetDecoder, version int16) (err error) {
 			}
 			partitionCount, err := pd.getArrayLength()
 			if err != nil {
+				log.Println("FETCH REQUEST 4")
 				return err
 			}
 			if partitionCount < 0 {

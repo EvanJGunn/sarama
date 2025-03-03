@@ -1,6 +1,9 @@
 package sarama
 
-import "time"
+import (
+	"log"
+	"time"
+)
 
 type OffsetFetchResponseBlock struct {
 	Offset      int64
@@ -152,6 +155,7 @@ func (r *OffsetFetchResponse) decode(pd packetDecoder, version int16) (err error
 		numTopics, err = pd.getArrayLength()
 	}
 	if err != nil {
+		log.Println("OFFSET FETCH RESPONSE 1")
 		return err
 	}
 
@@ -175,6 +179,7 @@ func (r *OffsetFetchResponse) decode(pd packetDecoder, version int16) (err error
 				numBlocks, err = pd.getArrayLength()
 			}
 			if err != nil {
+				log.Println("OFFSET FETCH RESPONSE 2")
 				return err
 			}
 

@@ -1,6 +1,9 @@
 package sarama
 
-import "time"
+import (
+	"log"
+	"time"
+)
 
 // IncrementalAlterConfigsResponse is a response type for incremental alter config
 type IncrementalAlterConfigsResponse struct {
@@ -34,6 +37,7 @@ func (a *IncrementalAlterConfigsResponse) decode(pd packetDecoder, version int16
 
 	responseCount, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("INCREMENTAL ALTER CONFIGS RESPONSE")
 		return err
 	}
 

@@ -1,6 +1,7 @@
 package sarama
 
 import (
+	"log"
 	"time"
 )
 
@@ -43,6 +44,7 @@ func (t *TxnOffsetCommitResponse) decode(pd packetDecoder, version int16) (err e
 
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("TXN OFFSET COMMIT RESPONSE 1")
 		return err
 	}
 
@@ -56,6 +58,7 @@ func (t *TxnOffsetCommitResponse) decode(pd packetDecoder, version int16) (err e
 
 		m, err := pd.getArrayLength()
 		if err != nil {
+			log.Println("TXN OFFSET COMMIT RESPONSE 2")
 			return err
 		}
 

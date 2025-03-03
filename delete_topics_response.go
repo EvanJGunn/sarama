@@ -1,6 +1,9 @@
 package sarama
 
-import "time"
+import (
+	"log"
+	"time"
+)
 
 type DeleteTopicsResponse struct {
 	Version         int16
@@ -39,6 +42,7 @@ func (d *DeleteTopicsResponse) decode(pd packetDecoder, version int16) (err erro
 
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("DELETE TOPICS RESPONSE")
 		return err
 	}
 

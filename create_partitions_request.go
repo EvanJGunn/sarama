@@ -1,6 +1,9 @@
 package sarama
 
-import "time"
+import (
+	"log"
+	"time"
+)
 
 type CreatePartitionsRequest struct {
 	Version         int16
@@ -33,6 +36,7 @@ func (c *CreatePartitionsRequest) encode(pe packetEncoder) error {
 func (c *CreatePartitionsRequest) decode(pd packetDecoder, version int16) (err error) {
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("CREATE PARTITIONS REQUEST")
 		return err
 	}
 	c.TopicPartitions = make(map[string]*TopicPartition, n)

@@ -1,5 +1,7 @@
 package sarama
 
+import "log"
+
 type IncrementalAlterConfigsOperation int8
 
 const (
@@ -45,6 +47,7 @@ func (a *IncrementalAlterConfigsRequest) encode(pe packetEncoder) error {
 func (a *IncrementalAlterConfigsRequest) decode(pd packetDecoder, version int16) error {
 	resourceCount, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("INCREMENTAL ALTER CONFIGS REQUEST 1")
 		return err
 	}
 
@@ -107,6 +110,7 @@ func (a *IncrementalAlterConfigsResource) decode(pd packetDecoder, version int16
 
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("INCREMENTAL ALTER CONFIGS REQUEST 2")
 		return err
 	}
 

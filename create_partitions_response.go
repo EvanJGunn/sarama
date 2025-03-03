@@ -2,6 +2,7 @@ package sarama
 
 import (
 	"fmt"
+	"log"
 	"time"
 )
 
@@ -38,6 +39,7 @@ func (c *CreatePartitionsResponse) decode(pd packetDecoder, version int16) (err 
 
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("CREATE PARTITIONS RESPONSE")
 		return err
 	}
 

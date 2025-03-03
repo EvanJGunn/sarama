@@ -1,6 +1,9 @@
 package sarama
 
-import "errors"
+import (
+	"errors"
+	"log"
+)
 
 // ConsumerGroupMemberMetadata holds the metadata for consumer group
 // https://github.com/apache/kafka/blob/trunk/clients/src/main/resources/common/message/ConsumerProtocolSubscription.json
@@ -63,6 +66,7 @@ func (m *ConsumerGroupMemberMetadata) decode(pd packetDecoder) (err error) {
 	if m.Version >= 1 {
 		n, err := pd.getArrayLength()
 		if err != nil {
+			log.Println("CONSUMER GROUP MEMBERS 2")
 			// permit missing data here in case of misbehaving 3rd party
 			// clients who incorrectly marked the member metadata as V1 in
 			// their JoinGroup request
@@ -161,6 +165,7 @@ func (m *ConsumerGroupMemberAssignment) decode(pd packetDecoder) (err error) {
 
 	var topicLen int
 	if topicLen, err = pd.getArrayLength(); err != nil {
+		log.Println("CONSUMER GROUP MEMBERS 1")
 		return
 	}
 

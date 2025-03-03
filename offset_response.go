@@ -1,6 +1,9 @@
 package sarama
 
-import "time"
+import (
+	"log"
+	"time"
+)
 
 type OffsetResponseBlock struct {
 	Err KError
@@ -85,6 +88,7 @@ func (r *OffsetResponse) decode(pd packetDecoder, version int16) (err error) {
 
 	numTopics, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("OFFSET RESPONSE 1")
 		return err
 	}
 
@@ -97,6 +101,7 @@ func (r *OffsetResponse) decode(pd packetDecoder, version int16) (err error) {
 
 		numBlocks, err := pd.getArrayLength()
 		if err != nil {
+			log.Println("OFFSET RESPONSE 2")
 			return err
 		}
 

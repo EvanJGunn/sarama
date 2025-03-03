@@ -1,6 +1,7 @@
 package sarama
 
 import (
+	"log"
 	"time"
 )
 
@@ -44,6 +45,7 @@ func (a *AddPartitionsToTxnResponse) decode(pd packetDecoder, version int16) (er
 
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("ADD PARTITIONS TO TXN RESPONSE 1")
 		return err
 	}
 
@@ -57,6 +59,7 @@ func (a *AddPartitionsToTxnResponse) decode(pd packetDecoder, version int16) (er
 
 		m, err := pd.getArrayLength()
 		if err != nil {
+			log.Println("ADD PARTITIONS TO TXN RESPONSE 2")
 			return err
 		}
 

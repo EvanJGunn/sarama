@@ -1,6 +1,7 @@
 package sarama
 
 import (
+	"log"
 	"sort"
 	"time"
 )
@@ -51,6 +52,7 @@ func (d *DeleteRecordsResponse) decode(pd packetDecoder, version int16) error {
 
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("DELETE RECORDS RESPONSE 1")
 		return err
 	}
 
@@ -126,6 +128,7 @@ func (t *DeleteRecordsResponseTopic) encode(pe packetEncoder) error {
 func (t *DeleteRecordsResponseTopic) decode(pd packetDecoder, version int16) error {
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("DELETE RECORDS RESPONSE 2")
 		return err
 	}
 

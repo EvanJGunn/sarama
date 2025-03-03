@@ -2,6 +2,7 @@ package sarama
 
 import (
 	"fmt"
+	"log"
 	"time"
 )
 
@@ -102,6 +103,7 @@ func (r *DescribeConfigsResponse) decode(pd packetDecoder, version int16) (err e
 
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("DESCRIBE CONFIGS RESPONSE 2")
 		return err
 	}
 
@@ -202,6 +204,7 @@ func (r *ResourceResponse) decode(pd packetDecoder, version int16) (err error) {
 
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("DESCRIBE CONFIGS RESPONSE 1")
 		return err
 	}
 
@@ -297,6 +300,7 @@ func (r *ConfigEntry) decode(pd packetDecoder, version int16) (err error) {
 	if version > 0 {
 		n, err := pd.getArrayLength()
 		if err != nil {
+			log.Println("DESCRIBE CONFIGS RESPONSE 3")
 			return err
 		}
 		r.Synonyms = make([]*ConfigSynonym, n)

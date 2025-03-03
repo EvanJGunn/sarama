@@ -1,6 +1,9 @@
 package sarama
 
-import "time"
+import (
+	"log"
+	"time"
+)
 
 type DescribeGroupsResponse struct {
 	// Version defines the protocol version to use for encode and decode
@@ -38,6 +41,7 @@ func (r *DescribeGroupsResponse) decode(pd packetDecoder, version int16) (err er
 		}
 	}
 	if numGroups, err := pd.getArrayLength(); err != nil {
+		log.Println("DESCRIBE GROUPS RESPONSE 1")
 		return err
 	} else if numGroups > 0 {
 		r.Groups = make([]*GroupDescription, numGroups)
@@ -169,6 +173,7 @@ func (gd *GroupDescription) decode(pd packetDecoder, version int16) (err error) 
 	}
 
 	if numMembers, err := pd.getArrayLength(); err != nil {
+		log.Println("DESCRIBE GROUPS RESPONSE 2")
 		return err
 	} else if numMembers > 0 {
 		gd.Members = make(map[string]*GroupMemberDescription, numMembers)

@@ -2,6 +2,7 @@ package sarama
 
 import (
 	"fmt"
+	"log"
 	"time"
 )
 
@@ -48,6 +49,7 @@ func (c *CreateTopicsResponse) decode(pd packetDecoder, version int16) (err erro
 
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("CREATE TOPICS RESPONSE")
 		return err
 	}
 

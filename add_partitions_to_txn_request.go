@@ -1,5 +1,7 @@
 package sarama
 
+import "log"
+
 // AddPartitionsToTxnRequest is a add partition request
 type AddPartitionsToTxnRequest struct {
 	Version         int16
@@ -44,6 +46,7 @@ func (a *AddPartitionsToTxnRequest) decode(pd packetDecoder, version int16) (err
 
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("ADD PARTITIONS TO TXN REQUEST")
 		return err
 	}
 

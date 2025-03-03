@@ -1,6 +1,9 @@
 package sarama
 
-import "github.com/rcrowley/go-metrics"
+import (
+	"github.com/rcrowley/go-metrics"
+	"log"
+)
 
 // RequiredAcks is used in Produce Requests to tell the broker how many replica acknowledgements
 // it must see before responding. Any of the constants defined here are valid. On broker versions
@@ -158,6 +161,7 @@ func (r *ProduceRequest) decode(pd packetDecoder, version int16) error {
 	}
 	topicCount, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("PRODUCE REQUEST 1")
 		return err
 	}
 	if topicCount == 0 {
@@ -172,6 +176,7 @@ func (r *ProduceRequest) decode(pd packetDecoder, version int16) error {
 		}
 		partitionCount, err := pd.getArrayLength()
 		if err != nil {
+			log.Println("PRODUCE REUQEST 2")
 			return err
 		}
 		r.records[topic] = make(map[int32]Records)

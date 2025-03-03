@@ -1,5 +1,7 @@
 package sarama
 
+import "log"
+
 type topicPartitionAssignment struct {
 	Topic     string
 	Partition int32
@@ -37,6 +39,7 @@ func (m *StickyAssignorUserDataV0) encode(pe packetEncoder) error {
 func (m *StickyAssignorUserDataV0) decode(pd packetDecoder) (err error) {
 	var topicLen int
 	if topicLen, err = pd.getArrayLength(); err != nil {
+		log.Println("STICKY ASSIGNOR USER DATA 1")
 		return
 	}
 
@@ -87,6 +90,7 @@ func (m *StickyAssignorUserDataV1) encode(pe packetEncoder) error {
 func (m *StickyAssignorUserDataV1) decode(pd packetDecoder) (err error) {
 	var topicLen int
 	if topicLen, err = pd.getArrayLength(); err != nil {
+		log.Println("STICKY ASSIGNOR USER DATA 2")
 		return
 	}
 

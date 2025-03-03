@@ -1,5 +1,7 @@
 package sarama
 
+import "log"
+
 // DescribeClientQuotas Request (Version: 0) => [components] strict
 //   components => entity_type match_type match
 //     entity_type => STRING
@@ -47,6 +49,7 @@ func (d *DescribeClientQuotasRequest) decode(pd packetDecoder, version int16) er
 	// Components
 	componentCount, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("DESCRIBE CLIENT QUOTAS REQUEST")
 		return err
 	}
 	if componentCount > 0 {

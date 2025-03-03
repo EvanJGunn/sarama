@@ -1,5 +1,7 @@
 package sarama
 
+import "log"
+
 type OffsetFetchRequest struct {
 	Version       int16
 	ConsumerGroup string
@@ -137,6 +139,7 @@ func (r *OffsetFetchRequest) decode(pd packetDecoder, version int16) (err error)
 		partitionCount, err = pd.getArrayLength()
 	}
 	if err != nil {
+		log.Println("OFFSET FETCH REQUEST")
 		return err
 	}
 

@@ -1,5 +1,7 @@
 package sarama
 
+import "log"
+
 // AlterConfigsRequest is an alter config request type
 type AlterConfigsRequest struct {
 	Version      int16
@@ -32,6 +34,7 @@ func (a *AlterConfigsRequest) encode(pe packetEncoder) error {
 func (a *AlterConfigsRequest) decode(pd packetDecoder, version int16) error {
 	resourceCount, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("ALTER CONFIGS REQUEST 2")
 		return err
 	}
 
@@ -92,6 +95,7 @@ func (a *AlterConfigsResource) decode(pd packetDecoder, version int16) error {
 
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("ALTER CONFIGS REQUEST 1")
 		return err
 	}
 

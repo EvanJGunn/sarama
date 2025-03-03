@@ -1,5 +1,7 @@
 package sarama
 
+import "log"
+
 type MemberIdentity struct {
 	MemberId        string
 	GroupInstanceId *string
@@ -51,6 +53,7 @@ func (r *LeaveGroupRequest) decode(pd packetDecoder, version int16) (err error) 
 	if r.Version >= 3 {
 		memberCount, err := pd.getArrayLength()
 		if err != nil {
+			log.Println("LEAVE GROUP REQUEST")
 			return err
 		}
 		r.Members = make([]MemberIdentity, memberCount)

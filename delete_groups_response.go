@@ -1,6 +1,7 @@
 package sarama
 
 import (
+	"log"
 	"time"
 )
 
@@ -35,6 +36,7 @@ func (r *DeleteGroupsResponse) decode(pd packetDecoder, version int16) error {
 
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("DELETE GROUPS RESPONSE")
 		return err
 	}
 	if n == 0 {

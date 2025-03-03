@@ -1,6 +1,7 @@
 package sarama
 
 import (
+	"log"
 	"time"
 )
 
@@ -62,6 +63,7 @@ func (r *DeleteOffsetsResponse) decode(pd packetDecoder, version int16) error {
 
 	numTopics, err := pd.getArrayLength()
 	if err != nil || numTopics == 0 {
+		log.Println("DELETE OFFSETS RESPONSE 1")
 		return err
 	}
 
@@ -74,6 +76,7 @@ func (r *DeleteOffsetsResponse) decode(pd packetDecoder, version int16) error {
 
 		numErrors, err := pd.getArrayLength()
 		if err != nil {
+			log.Println("DELETE OFFSETS RESPONSE 2")
 			return err
 		}
 

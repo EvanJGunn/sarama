@@ -1,5 +1,7 @@
 package sarama
 
+import "log"
+
 // CreateAclsRequest is an acl creation request
 type CreateAclsRequest struct {
 	Version      int16
@@ -24,6 +26,7 @@ func (c *CreateAclsRequest) decode(pd packetDecoder, version int16) (err error) 
 	c.Version = version
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("ACL CREATE REQUEST")
 		return err
 	}
 

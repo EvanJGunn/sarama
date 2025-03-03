@@ -1,5 +1,7 @@
 package sarama
 
+import "log"
+
 type ListGroupsResponse struct {
 	Version      int16
 	ThrottleTime int32
@@ -76,6 +78,7 @@ func (r *ListGroupsResponse) decode(pd packetDecoder, version int16) error {
 		n, err = pd.getCompactArrayLength()
 	}
 	if err != nil {
+		log.Println("LIST GROUPS RESPONSE")
 		return err
 	}
 

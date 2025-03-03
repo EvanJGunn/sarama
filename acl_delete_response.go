@@ -1,6 +1,9 @@
 package sarama
 
-import "time"
+import (
+	"log"
+	"time"
+)
 
 // DeleteAclsResponse is a delete acl response
 type DeleteAclsResponse struct {
@@ -34,6 +37,7 @@ func (d *DeleteAclsResponse) decode(pd packetDecoder, version int16) (err error)
 
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("ACL DELETE RESPONSE 1")
 		return err
 	}
 	d.FilterResponses = make([]*FilterResponse, n)
@@ -115,6 +119,7 @@ func (f *FilterResponse) decode(pd packetDecoder, version int16) (err error) {
 
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("ACL DELETE RESPONSE 2")
 		return err
 	}
 	f.MatchingAcls = make([]*MatchingAcl, n)

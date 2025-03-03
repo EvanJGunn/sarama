@@ -1,5 +1,7 @@
 package sarama
 
+import "log"
+
 type DescribeConfigsRequest struct {
 	Version         int16
 	Resources       []*ConfigResource
@@ -42,6 +44,7 @@ func (r *DescribeConfigsRequest) encode(pe packetEncoder) error {
 func (r *DescribeConfigsRequest) decode(pd packetDecoder, version int16) (err error) {
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("DESCRIBE CONFIGS REQUEST 1")
 		return err
 	}
 
@@ -62,6 +65,7 @@ func (r *DescribeConfigsRequest) decode(pd packetDecoder, version int16) (err er
 
 		confLength, err := pd.getArrayLength()
 		if err != nil {
+			log.Println("DESCRIBE CONFIGS REQUEST 2")
 			return err
 		}
 

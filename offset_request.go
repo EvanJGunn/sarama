@@ -1,5 +1,7 @@
 package sarama
 
+import "log"
+
 type offsetRequestBlock struct {
 	// currentLeaderEpoch contains the current leader epoch (used in version 4+).
 	currentLeaderEpoch int32
@@ -112,6 +114,7 @@ func (r *OffsetRequest) decode(pd packetDecoder, version int16) error {
 
 	blockCount, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("OFFSET REQUEST 1")
 		return err
 	}
 	if blockCount == 0 {
@@ -125,6 +128,7 @@ func (r *OffsetRequest) decode(pd packetDecoder, version int16) error {
 		}
 		partitionCount, err := pd.getArrayLength()
 		if err != nil {
+			log.Println("OFFSET REQUEST 2")
 			return err
 		}
 		r.blocks[topic] = make(map[int32]*offsetRequestBlock)

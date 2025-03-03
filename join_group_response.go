@@ -1,6 +1,9 @@
 package sarama
 
-import "time"
+import (
+	"log"
+	"time"
+)
 
 type JoinGroupResponse struct {
 	// Version defines the protocol version to use for encode and decode
@@ -116,6 +119,7 @@ func (r *JoinGroupResponse) decode(pd packetDecoder, version int16) (err error) 
 
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("JOIN GROUP RESPONSE")
 		return err
 	}
 	if n == 0 {

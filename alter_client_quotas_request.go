@@ -1,5 +1,7 @@
 package sarama
 
+import "log"
+
 // AlterClientQuotas Request (Version: 0) => [entries] validate_only
 //   entries => [entity] [ops]
 //     entity => entity_type entity_name
@@ -49,6 +51,7 @@ func (a *AlterClientQuotasRequest) decode(pd packetDecoder, version int16) error
 	// Entries
 	entryCount, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("ALTER CLIENT QUOTAS REQUEST 3")
 		return err
 	}
 	if entryCount > 0 {
@@ -102,6 +105,7 @@ func (a *AlterClientQuotasEntry) decode(pd packetDecoder, version int16) error {
 	// Entity
 	componentCount, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("ALTER CLIENT QUOTAS REQUEST 1")
 		return err
 	}
 	if componentCount > 0 {
@@ -120,6 +124,7 @@ func (a *AlterClientQuotasEntry) decode(pd packetDecoder, version int16) error {
 	// Ops
 	opCount, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("ALTER CLIENT QUOTAS REQUEST 2")
 		return err
 	}
 	if opCount > 0 {

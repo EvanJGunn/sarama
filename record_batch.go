@@ -3,6 +3,7 @@ package sarama
 import (
 	"errors"
 	"fmt"
+	"log"
 	"time"
 )
 
@@ -159,6 +160,7 @@ func (b *RecordBatch) decode(pd packetDecoder) (err error) {
 
 	numRecs, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("RECORD BATCH")
 		return err
 	}
 	if numRecs >= 0 {

@@ -2,6 +2,7 @@ package sarama
 
 import (
 	"fmt"
+	"log"
 	"time"
 )
 
@@ -90,6 +91,7 @@ func (r *ProduceResponse) decode(pd packetDecoder, version int16) (err error) {
 
 	numTopics, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("PRODUCE RESPONSE 1")
 		return err
 	}
 
@@ -102,6 +104,7 @@ func (r *ProduceResponse) decode(pd packetDecoder, version int16) (err error) {
 
 		numBlocks, err := pd.getArrayLength()
 		if err != nil {
+			log.Println("PRODUCE RESPONSE 2")
 			return err
 		}
 

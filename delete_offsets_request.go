@@ -1,5 +1,7 @@
 package sarama
 
+import "log"
+
 type DeleteOffsetsRequest struct {
 	Version    int16
 	Group      string
@@ -41,6 +43,7 @@ func (r *DeleteOffsetsRequest) decode(pd packetDecoder, version int16) (err erro
 
 	partitionCount, err = pd.getArrayLength()
 	if err != nil {
+		log.Println("DELETE OFFSETS REQUEST")
 		return err
 	}
 

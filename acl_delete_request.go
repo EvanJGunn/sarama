@@ -1,5 +1,7 @@
 package sarama
 
+import "log"
+
 // DeleteAclsRequest is a delete acl request
 type DeleteAclsRequest struct {
 	Version int
@@ -25,6 +27,7 @@ func (d *DeleteAclsRequest) decode(pd packetDecoder, version int16) (err error) 
 	d.Version = int(version)
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("ACL DELETE REQUEST")
 		return err
 	}
 

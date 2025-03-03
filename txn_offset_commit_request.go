@@ -1,5 +1,7 @@
 package sarama
 
+import "log"
+
 type TxnOffsetCommitRequest struct {
 	Version         int16
 	TransactionalID string
@@ -56,6 +58,7 @@ func (t *TxnOffsetCommitRequest) decode(pd packetDecoder, version int16) (err er
 
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("TXN OFFSET COMMIT REQUEST 1")
 		return err
 	}
 
@@ -68,6 +71,7 @@ func (t *TxnOffsetCommitRequest) decode(pd packetDecoder, version int16) (err er
 
 		m, err := pd.getArrayLength()
 		if err != nil {
+			log.Println("TXN OFFSET COMMIT REQUEST 2")
 			return err
 		}
 

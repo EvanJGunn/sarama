@@ -1,5 +1,7 @@
 package sarama
 
+import "log"
+
 type GroupProtocol struct {
 	// Name contains the protocol name.
 	Name string
@@ -137,6 +139,7 @@ func (r *JoinGroupRequest) decode(pd packetDecoder, version int16) (err error) {
 
 	n, err := pd.getArrayLength()
 	if err != nil {
+		log.Println("JOIN GROUP REQUEST")
 		return err
 	}
 	if n == 0 {
