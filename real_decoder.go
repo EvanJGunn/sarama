@@ -118,6 +118,7 @@ func (rd *realDecoder) getArrayLength() (int, error) {
 		return -1, ErrInsufficientData
 	} else if tmp > 2*math.MaxUint16 {
 		log.Printf("%v > %v \n", tmp, 2*math.MaxUint16)
+		log.Printf("raw bytes len %v\n", len(rd.raw))
 		return -1, errInvalidArrayLength
 	}
 	return tmp, nil
