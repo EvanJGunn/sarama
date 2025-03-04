@@ -158,14 +158,16 @@ func (b *RecordBatch) decode(pd packetDecoder) (err error) {
 		return err
 	}
 
+	log.Println("RECORD BATCH")
+	log.Printf("Version: %v\n", b.Version)
+	log.Printf("Base offset: %v\n", b.FirstOffset)
+	log.Printf("Last offset delta: %v\n", b.LastOffsetDelta)
 	numRecs, err := pd.getArrayLength()
 	if err != nil {
-		log.Println("RECORD BATCH")
-		log.Printf("Version: %v\n", b.Version)
-		log.Printf("Base offset: %v\n", b.FirstOffset)
-		log.Printf("Last offset delta: %v\n", b.LastOffsetDelta)
 		return err
 	}
+	log.Println(" ---------- NO ERROR ---------- ")
+	log.Printf("NUMBER OF RECORDS: %v \n", numRecs)
 	if numRecs >= 0 {
 		b.Records = make([]*Record, numRecs)
 	}
